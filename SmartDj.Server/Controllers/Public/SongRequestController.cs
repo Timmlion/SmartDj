@@ -17,12 +17,12 @@ namespace SmartDj.Server.Controllers.Public
         public SongRequestController(
             SongRequestService songRequestService,
             FormTemplateService formTemplateService
-            )
+        )
         {
             _songRequestService = songRequestService;
             _formTemplateService = formTemplateService;
         }
-        
+
         [HttpPost("[controller]")]
         public ServiceResponse<int> Post([FromBody] PostSongRequestDTO songRequestDto)
         {
@@ -38,9 +38,11 @@ namespace SmartDj.Server.Controllers.Public
             {
                 return Content(formContent.Data.HtmlContent, "text/html");
             }
-
-            return StatusCode(418);
+            return Content(hardcodedDefaultTemplate, "text/html");
 
         }
+
+        private string hardcodedDefaultTemplate =
+            "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Form Error</title>\n<style>\n    body {\n        margin: 0;\n        padding: 0;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        height: 100vh;\n        font-family: Arial, sans-serif;\n        background-color: #f7f7f7;\n    }\n    .container {\n        text-align: center;\n    }\n    h1 {\n        font-size: 24px;\n        color: #333;\n    }\n    p {\n        font-size: 18px;\n        color: #666;\n    }\n    @media (max-width: 600px) {\n        h1 {\n            font-size: 20px;\n        }\n        p {\n            font-size: 16px;\n        }\n    }\n</style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Sorry, problem with the form</h1>\n        <p>Contact the DJ</p>\n    </div>\n</body>\n</html>\n";
     }
 }
