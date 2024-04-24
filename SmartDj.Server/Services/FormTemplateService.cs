@@ -30,7 +30,7 @@ namespace SmartDj.Server.Services
             var newFormTemplate = new FormTemplate { HtmlContent = formTemplate };
             _dataContext.FormTemplates.Add(newFormTemplate);
             _dataContext.SaveChanges();
-            return new ServiceResponse<string>("New form added successfully.");
+            return new ServiceResponse<string>(data: "New form added successfully.");
         }
 
         public ServiceResponse<List<FormTemplate>> GetAllTemplates()
@@ -55,7 +55,7 @@ namespace SmartDj.Server.Services
             var newTemplate = new FormTemplate { HtmlContent = templateContent };
             _dataContext.FormTemplates.Add(newTemplate);
             _dataContext.SaveChanges();
-            return new ServiceResponse<string>("Template added successfully.");
+            return new ServiceResponse<string>(data: "Template added successfully.");
         }
 
         public ServiceResponse<string> RemoveTemplate(int id)
@@ -65,7 +65,7 @@ namespace SmartDj.Server.Services
             {
                 _dataContext.FormTemplates.Remove(template);
                 _dataContext.SaveChanges();
-                return new ServiceResponse<string>("Template removed successfully.");
+                return new ServiceResponse<string>(data: "Template removed successfully.");
             }
 
             return new ServiceResponse<string>("Template not found.");
