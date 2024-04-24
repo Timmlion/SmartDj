@@ -15,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<SongRequestService>();
+builder.Services.AddScoped<FormTemplateService>();
 
 var app = builder.Build();
 
