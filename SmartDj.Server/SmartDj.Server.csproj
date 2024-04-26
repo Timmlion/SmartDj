@@ -19,6 +19,12 @@
 
   <ItemGroup>
     <Folder Include="Controllers\UIClient\" />
+    <Folder Include="DTO\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartDj.Shared\SmartDj.Shared.csproj" />
   </ItemGroup>
 
 </Project>

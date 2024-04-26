@@ -1,4 +1,4 @@
-namespace SmartDJ.Server;
+namespace SmartDj.Shared.Models;
 
 
 public class ServiceResponse<T>

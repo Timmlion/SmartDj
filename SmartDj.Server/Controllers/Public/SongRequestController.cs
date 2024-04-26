@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices.JavaScript;
 using Microsoft.AspNetCore.Mvc;
-using SmartDJ.Server;
-using SmartDj.Server.DTO;
 using SmartDj.Server.Services;
+using SmartDj.Shared.DTO;
+using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Controllers.Public
 {

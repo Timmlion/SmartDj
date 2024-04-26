@@ -1,6 +1,6 @@
-using SmartDJ.Server;
 using SmartDj.Server.Data;
-using SmartDj.Server.DTO;
+using SmartDj.Shared.DTO;
+using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Services;
 

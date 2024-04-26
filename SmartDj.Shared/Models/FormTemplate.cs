@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SmartDJ.Server;
+namespace SmartDj.Shared.Models;
 
 public class FormTemplate
 {

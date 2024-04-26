@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SmartDJ.Server;
+using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Data;
 

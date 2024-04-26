@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SmartDJ.Server;
 using SmartDj.Server.Services;
+using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Controllers.UIClient
 {

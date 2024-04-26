@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using SmartDJ.Server;
 using SmartDj.Server.Data;
+using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Services
 {

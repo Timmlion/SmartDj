@@ -1,4 +1,4 @@
-namespace SmartDj.Server.DTO;
+namespace SmartDj.Shared.DTO;
 
 public class PostSongRequestDTO
 {
