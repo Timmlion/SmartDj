@@ -1,0 +1,32 @@
+@using SmartDj.Shared.Models
+<h3>SongRequestGrid</h3>
+
+<Grid @ref="grid"
+      TItem="SongRequest"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="SongRequestDataProvider">
+
+    <GridColumn TItem="SongRequest" HeaderText="Id">
+        @context.Id
+    </GridColumn>
+    <GridColumn TItem="SongRequest" HeaderText="Data">
+        @context.DateCreated
+    </GridColumn><GridColumn TItem="SongRequest" HeaderText="Piosenka">
+        @context.SongTitle
+    </GridColumn>
+    <GridColumn TItem="SongRequest" HeaderText="Od kogo">
+        @context.RequestorName
+    </GridColumn>
+    <GridColumn TItem="SongRequest" HeaderText="Dla kogo">
+        @context.DedicateeName
+    </GridColumn>
+    <GridColumn TItem="SongRequest" HeaderText="Dedykacja">
+        @context.Message
+    </GridColumn>
+    <GridColumn TItem="SongRequest" HeaderText="Było grane">
+        <ChildContent>
+            <Switch @bind-Value="@context.WasPlayed"/>
+        </ChildContent>
+    </GridColumn>
+
+</Grid>

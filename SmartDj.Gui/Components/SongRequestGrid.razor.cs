@@ -2,9 +2,9 @@ using BlazorBootstrap;
 using Microsoft.AspNetCore.Components;
 using SmartDj.Shared.Models;
 
-namespace SmartDj.Gui.Pages;
+namespace SmartDj.Gui.Components;
 
-public partial class Home : ComponentBase
+public partial class SongRequestGrid : ComponentBase
 {
     BlazorBootstrap.Grid<SongRequest> grid = default!;
     private IEnumerable<SongRequest> songRequests = default!;
