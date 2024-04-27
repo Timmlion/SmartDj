@@ -11,5 +11,5 @@ public class SongRequest
     public string RequestorName { get; set; } = String.Empty;
     public string DedicateeName { get; set; } = String.Empty;
     public string Message { get; set; } = String.Empty;
-    public bool Played { get; set; } = false;
+    public bool WasPlayed { get; set; } = false;
 }

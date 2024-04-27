@@ -17,7 +17,7 @@ namespace SmartDj.Server.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
 
-            modelBuilder.Entity("SmartDJ.Server.FormTemplate", b =>
+            modelBuilder.Entity("SmartDj.Shared.Models.FormTemplate", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace SmartDj.Server.Migrations
                     b.ToTable("FormTemplates");
                 });
 
-            modelBuilder.Entity("SmartDJ.Server.SongRequest", b =>
+            modelBuilder.Entity("SmartDj.Shared.Models.SongRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,9 +55,6 @@ namespace SmartDj.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Played")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("RequestorName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -65,6 +62,9 @@ namespace SmartDj.Server.Migrations
                     b.Property<string>("SongTitle")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("WasPlayed")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

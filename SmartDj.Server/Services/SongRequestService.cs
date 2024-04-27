@@ -28,7 +28,7 @@ public class SongRequestService
             _dataContext.SaveChanges();
             
             var songsCount = _dataContext.SongRequests
-                .Count(sr => sr.Played == false );
+                .Count(sr => sr.WasPlayed == false );
             return new ServiceResponse<int>(songsCount);
         }
         catch(Exception ex)
