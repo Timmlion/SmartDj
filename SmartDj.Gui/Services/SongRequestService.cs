@@ -1,17 +1,24 @@
+using System.Net.Http.Json;
+using Microsoft.AspNetCore.Components;
 using SmartDj.Shared.Models;
 
 namespace SmartDj.Gui.Services;
 
-public class SongRequestService
+public class SongRequestService(HttpClient httpClient)
 {
-    public IEnumerable<SongRequest>? GetSongRequests()
+    
+    public async Task<IEnumerable<SongRequest>?> GetSongRequests()
     {
-        return new List<SongRequest>
+        var response = await httpClient.GetAsync("api/RequestedSongs");
+        response.EnsureSuccessStatusCode();
+
+        var serviceResponse = await response.Content.ReadFromJsonAsync<ServiceResponse<List<SongRequest>>>();
+
+        if (serviceResponse.Success)
         {
-            new SongRequest{Id = 1, DateCreated = DateTime.Now, RequestorName = "Zuzia", DedicateeName = "Zbigniew", SongTitle = "Tytuł piosenki", Message = "Dedykacja, Lorem ipsum pipsum sripsum tripsum bombiksum fafarafa fifirafifo", WasPlayed = true},
-            new SongRequest{Id = 2, DateCreated = DateTime.Now, RequestorName = "Zuzia2", DedicateeName = "Zbigniew", SongTitle = "Tytuł piosenki", Message = "Dedykacja, Lorem ipsum pipsum sripsum tripsum bombiksum fafarafa fifirafifo", WasPlayed = false},
-            new SongRequest{Id = 3, DateCreated = DateTime.Now, RequestorName = "Zuzia3", DedicateeName = "Zbigniew", SongTitle = "Tytuł piosenki", Message = "Dedykacja, Lorem ipsum pipsum sripsum tripsum bombiksum fafarafa fifirafifo", WasPlayed = false},
-            new SongRequest{Id = 4, DateCreated = DateTime.Now, RequestorName = "Zuzia4", DedicateeName = "Zbigniew", SongTitle = "Tytuł piosenki", Message = "Dedykacja, Lorem ipsum pipsum sripsum tripsum bombiksum fafarafa fifirafifo", WasPlayed = false},
-        };
+            return serviceResponse.Data;
+        }
+
+        return null;
     }
 }

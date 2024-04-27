@@ -2,8 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using SmartDj.Server.Data;
 using SmartDj.Server.Services;
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy  =>
+        {
+            policy.AllowAnyOrigin();
+        });
+});
 
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(options =>
@@ -27,6 +38,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

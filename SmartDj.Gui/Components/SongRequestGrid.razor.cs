@@ -22,7 +22,7 @@ public partial class SongRequestGrid : ComponentBase
     private async Task<GridDataProviderResult<SongRequest>> SongRequestDataProvider(GridDataProviderRequest<SongRequest> request)
     {
         if (songRequests is null) // pull employees only one time for client-side filtering, sorting, and paging
-            songRequests = _songRequestService.GetSongRequests(); // call a service or an API to pull the employees
+            songRequests = await _songRequestService.GetSongRequests(); // call a service or an API to pull the employees
 
         return await Task.FromResult(request.ApplyTo(songRequests));
     }
