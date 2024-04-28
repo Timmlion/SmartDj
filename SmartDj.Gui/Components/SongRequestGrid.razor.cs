@@ -42,7 +42,7 @@ public partial class SongRequestGrid : ComponentBase
         var success =  await _songRequestService.UpdateSongRequest(id, wasPlayed);
         if (!success)
         {
-            //ToDo: Add modal
+            //ToDo: Add modal or toast
         }
         else
         {
