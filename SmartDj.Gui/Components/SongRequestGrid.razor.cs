@@ -17,7 +17,7 @@ public partial class SongRequestGrid : ComponentBase
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        StartTimer(5);
+        StartTimer(10);
     }
 
     private async Task StartTimer(int secconds)
@@ -44,5 +44,9 @@ public partial class SongRequestGrid : ComponentBase
         {
             //ToDo: Add modal
         }
+        else
+        {
+            grid.RefreshDataAsync(); 
+        }  
     }
 }
