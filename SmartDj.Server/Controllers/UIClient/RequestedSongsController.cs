@@ -26,7 +26,7 @@ namespace SmartDj.Server.Controllers.UIClient
         
         // Clear song request list
         [HttpDelete]
-        public ServiceResponse<string> Delete()
+        public ServiceResponse<bool> Delete()
         {
             return _songRequestService.ClearSongList();
         }

@@ -50,7 +50,7 @@ public class SongRequestService
         return new ServiceResponse<List<SongRequest>>("Problem z pobraniem listy utworów");
     }
 
-    public ServiceResponse<string> ClearSongList()
+    public ServiceResponse<bool> ClearSongList()
     {
         try
         {
@@ -58,11 +58,11 @@ public class SongRequestService
             
             _dataContext.SongRequests.RemoveRange(records);
             _dataContext.SaveChanges();
-            return new ServiceResponse<string>(data: "Baza danych wyczyszczona poprawnie");
+            return new ServiceResponse<bool>(true);
         }
         catch(Exception ex)
         {
-            return new ServiceResponse<string>("Błąd podczas czyszczenia bazy danych");
+            return new ServiceResponse<bool>("Błąd podczas czyszczenia bazy danych");
         }
     }
 

@@ -1,3 +1,19 @@
 @page "/settings"
 <h3>settings</h3>
 
+<Modal @ref="modal" Title="Modal title">
+    <BodyTemplate>
+        Modal body text goes here.
+    </BodyTemplate>
+    <FooterTemplate>
+        <Button Color="ButtonColor.Secondary" @onclick="HideClearListModal">Close</Button>
+        <Button Color="ButtonColor.Primary" @onclick="ClearSongList">Save changes</Button>
+    </FooterTemplate>
+</Modal>
+
+<Button
+    Color="ButtonColor.Danger"
+    @onclick="(() => ShowClearListModal())"
+    Outline="true">
+        <Icon Name="IconName.XCircleFill"></Icon> Wyczyść listę
+</Button>

@@ -38,4 +38,16 @@ public class SongRequestService(HttpClient httpClient)
 
         return false;
     }
+
+    public async Task<bool> ClearRequestSongsList()
+    {
+        var response = await httpClient.DeleteAsync("api/RequestedSongs");
+        var serviceResponse = await response.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
+        
+        if (serviceResponse.Data && serviceResponse.Success)
+        {
+            return true;
+        }
+        return false;
+    }
 }
