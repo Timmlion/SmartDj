@@ -65,4 +65,20 @@ public class SongRequestService
             return new ServiceResponse<string>("Błąd podczas czyszczenia bazy danych");
         }
     }
+
+    public ServiceResponse<bool> UpdateSongRequest(PostSongRequestUpdateDto songRequestUpdate)
+    {
+        try
+        {
+            var song = _dataContext.SongRequests.Where(s => s.Id == songRequestUpdate.Id).FirstOrDefault();
+            song.WasPlayed = songRequestUpdate.WasPlayed;
+            _dataContext.SaveChanges();
+            return new ServiceResponse<bool>(true);
+        }
+        catch (Exception ex)
+        {
+            return new ServiceResponse<bool>("Błąd podczas aktualizacji piosenki");
+        }
+
+    }
 }

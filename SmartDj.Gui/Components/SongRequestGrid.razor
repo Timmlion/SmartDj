@@ -27,7 +27,25 @@
     </GridColumn>
     <GridColumn TItem="SongRequest" HeaderText="Było grane">
         <ChildContent>
-            <Switch @bind-Value="@context.WasPlayed"/>
+            @if (!context.WasPlayed)
+            {
+                <Button
+                    Color="ButtonColor.Success"
+                    @onclick="(() => UpdateSongRequest(context.Id, true))"
+                    Outline="true">
+                        <Icon Name="IconName.PlayCircleFill"/> Zagraj
+                </Button>
+            }
+            else
+            {
+                <Button
+                    Color="ButtonColor.Dark"
+                    @onclick="(() => UpdateSongRequest(context.Id, true))"
+                    Outline="true">
+                        <Icon Name="IconName.CheckCircleFill"/> Było
+                </Button>
+            }
+            
         </ChildContent>
     </GridColumn>
 

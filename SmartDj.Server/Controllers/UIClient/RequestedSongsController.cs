@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmartDj.Server.Services;
+using SmartDj.Shared.DTO;
 using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Controllers.UIClient
@@ -28,6 +29,12 @@ namespace SmartDj.Server.Controllers.UIClient
         public ServiceResponse<string> Delete()
         {
             return _songRequestService.ClearSongList();
+        }
+
+        [HttpPost]
+        public ServiceResponse<bool> UpdateSongRequest([FromBody]PostSongRequestUpdateDto songRequestUpdate)
+        {
+            return _songRequestService.UpdateSongRequest(songRequestUpdate);
         }
     }
 }

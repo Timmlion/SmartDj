@@ -36,5 +36,13 @@ public partial class SongRequestGrid : ComponentBase
         return await Task.FromResult(request.ApplyTo(songRequests));
     }
 
-    
+
+    private async Task UpdateSongRequest(int id, bool wasPlayed)
+    {
+        var success =  await _songRequestService.UpdateSongRequest(id, wasPlayed);
+        if (!success)
+        {
+            //ToDo: Add modal
+        }
+    }
 }
