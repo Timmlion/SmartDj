@@ -19,81 +19,39 @@ namespace SmartDj.Server.Controllers.UIClient
         }
         
         // GET: get all templates
-        [HttpGet]
-        public ActionResult<IEnumerable<FormTemplate>> GetAll()
+        [HttpGet("all")]
+        public ServiceResponse<List<FormTemplate>> GetAll()
         {
-            var allTemplatesSR = _formTemplateService.GetAllTemplates();
-
-            if (allTemplatesSR.Success)
-            {
-                return Ok(allTemplatesSR.Data);
-            }
-            else
-            {
-                return Problem(allTemplatesSR.Message);
-            }
+            return _formTemplateService.GetAllTemplates();
         }
 
         // GET: get active template
         [HttpGet("active")]
-        public ActionResult<FormTemplate> GetActive()
+        public ServiceResponse<FormTemplate> GetActive()
         {
-            var activeTemplateSR = _formTemplateService.GetActiveTemplate();
-
-            if (activeTemplateSR.Success)
-            {
-                return Ok(activeTemplateSR.Data);
-            }
-            else
-            {
-                return Problem(activeTemplateSR.Message);
-            }
+            return _formTemplateService.GetActiveTemplate();
         }
 
         // GET: get template by id
         [HttpGet("{id}")]
-        public ActionResult<FormTemplate> Get(int id)
+        public ServiceResponse<FormTemplate> Get(int id)
         {
-            var templateSR = _formTemplateService.GetTemplateByID(id);
-
-            if (templateSR.Success)
-            {
-                return Ok(templateSR.Data);
-            }
-            else
-            {
-                return Problem(templateSR.Message);
-            }
+            return _formTemplateService.GetTemplateByID(id);
         }
 
         // POST: post template
         [HttpPost]
-        public IActionResult Post([FromBody] string templateContent)
+        public ServiceResponse<string> Post([FromBody] string templateContent)
         {
-            var result = _formTemplateService.AddTemplate(templateContent);
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-            else
-            {
-                return Problem(result.Message);
-            }
+            return _formTemplateService.AddTemplate(templateContent);
+
         }
 
         // DELETE: dalete template by id
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public ServiceResponse<string> Delete(int id)
         {
-            var result = _formTemplateService.RemoveTemplate(id);
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-            else
-            {
-                return Problem(result.Message);
-            }
+            return _formTemplateService.RemoveTemplate(id);
         }
     }
 }
