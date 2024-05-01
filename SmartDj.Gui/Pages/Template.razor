@@ -1,0 +1,30 @@
+@page "/template"
+@using SmartDj.Shared.Models
+<h3>Template</h3>
+
+<Grid @ref="grid"
+      TItem="FormTemplate"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="FormTemplateDataProvider">
+
+    <GridColumn TItem="FormTemplate" HeaderText="Id">
+        @context.Id
+    </GridColumn>
+    <GridColumn TItem="FormTemplate" HeaderText="Data">
+        @context.DateCreated
+    </GridColumn>
+    <GridColumn TItem="FormTemplate" HeaderText="Nazwa">
+        Nazwa 
+    </GridColumn>
+    <GridColumn TItem="FormTemplate" HeaderText="Aktywny">
+        @context.IsActive
+    </GridColumn>
+    
+
+</Grid>
+
+<Button Color="ButtonColor.Secondary" @onclick="LoadActiveTemplate">Załaduj aktywny szablon</Button>
+<Button Color="ButtonColor.Primary" @onclick="SaveTemplateChanges">Zapisz zmiany</Button>
+<textarea>
+
+</textarea>
