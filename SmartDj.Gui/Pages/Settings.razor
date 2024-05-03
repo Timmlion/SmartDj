@@ -1,13 +1,13 @@
 @page "/settings"
-<h3>settings</h3>
-
-<Modal @ref="modal" Title="Modal title">
+<h3>Ustawienia</h3>
+<br/>
+<Modal @ref="modal" Title="Potwierdź">
     <BodyTemplate>
-        Modal body text goes here.
+        Napewo wyczyścić listę zamówionych utworów ? 
     </BodyTemplate>
     <FooterTemplate>
-        <Button Color="ButtonColor.Secondary" @onclick="HideClearListModal">Close</Button>
-        <Button Color="ButtonColor.Primary" @onclick="ClearSongList">Save changes</Button>
+        <Button Color="ButtonColor.Secondary" @onclick="HideClearListModal">Zamknij</Button>
+        <Button Color="ButtonColor.Primary" @onclick="ClearSongList">Usuń wszystko</Button>
     </FooterTemplate>
 </Modal>
 
