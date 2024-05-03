@@ -30,7 +30,8 @@ public partial class SongRequestGrid : ComponentBase
         }
     }
 
-    private async Task<GridDataProviderResult<SongRequest>> SongRequestDataProvider(GridDataProviderRequest<SongRequest> request)
+    private async Task<GridDataProviderResult<SongRequest>> SongRequestDataProvider(
+        GridDataProviderRequest<SongRequest> request)
     { 
         songRequests = await _songRequestService.GetSongRequests(); 
         return await Task.FromResult(request.ApplyTo(songRequests));

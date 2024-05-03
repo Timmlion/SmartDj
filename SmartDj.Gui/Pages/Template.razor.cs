@@ -39,4 +39,10 @@ public partial class Template : ComponentBase
         /*_formTemplate.HtmlContent = _templateContent;
         _templateService.PostTemplate(_formTemplate);*/
     }
+
+    private async Task SetAsActive(int contextId)
+    {
+        await _templateService.SetTemplateAsActive(contextId);
+        grid.RefreshDataAsync(); 
+    }
 }

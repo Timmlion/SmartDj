@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using SmartDj.Server.Data;
+using SmartDj.Shared.DTO;
 using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Services
@@ -50,12 +51,25 @@ namespace SmartDj.Server.Services
             return new ServiceResponse<FormTemplate>("Template not found.");
         }
 
-        public ServiceResponse<string> AddTemplate(string templateContent)
+        public ServiceResponse<string> AddUpdateTemplate(PostTemplateDto postTemplateDto)
         {
-            var newTemplate = new FormTemplate { HtmlContent = templateContent };
-            _dataContext.FormTemplates.Add(newTemplate);
-            _dataContext.SaveChanges();
-            return new ServiceResponse<string>(data: "Template added successfully.");
+            if (postTemplateDto.Id == null)
+            {
+                var newTemplate = new FormTemplate { 
+                    HtmlContent = postTemplateDto.TemplateContent, 
+                    Name = postTemplateDto.Name};
+                _dataContext.FormTemplates.Add(newTemplate);
+                _dataContext.SaveChanges();
+                return new ServiceResponse<string>(data: "Template added successfully.");
+            }
+            else
+            {
+                var template = _dataContext.FormTemplates.Where(t => t.Id == postTemplateDto.Id).FirstOrDefault();
+                template.Name = postTemplateDto.Name;
+                template.HtmlContent = postTemplateDto.TemplateContent;
+                _dataContext.SaveChanges();
+                return new ServiceResponse<string>(data: "Template updated successfully.");
+            }
         }
 
         public ServiceResponse<string> RemoveTemplate(int id)
@@ -70,5 +84,28 @@ namespace SmartDj.Server.Services
 
             return new ServiceResponse<string>("Template not found.");
         }
+
+        public ServiceResponse<bool> SetAsActive(int id)
+        {
+            // Start by setting all entries to inactive
+            var templates = _dataContext.FormTemplates.ToList();
+            foreach (var template in templates)
+            {
+                template.IsActive = false;
+            }
+
+            // Then set the specified entry to active
+            var selectedTemplate = templates.FirstOrDefault(t => t.Id == id);
+            if (selectedTemplate != null)
+            {
+                selectedTemplate.IsActive = true;
+                _dataContext.SaveChanges(); // Save changes to the database
+                return new ServiceResponse<bool> { Data = true, Message = "Template set as active successfully.", Success = true };
+            }
+    
+            // If we did not find the template with the given ID, handle the error
+            return new ServiceResponse<bool> { Data = false, Message = "Template not found.", Success = false };
+        }
+
     }
 }

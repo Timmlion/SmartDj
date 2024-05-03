@@ -42,4 +42,13 @@ public class TemplateService(HttpClient httpClient)
         //ToDo: implement error handling
         return null;
     }
+
+    public async Task<bool> SetTemplateAsActive(int contextId)
+    {
+        var response = await httpClient.GetAsync(
+            "api/Template/setActive/"+contextId);
+        var serviceResponse = await response.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
+
+        return serviceResponse.Success;
+    }
 }

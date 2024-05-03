@@ -1,6 +1,6 @@
 @page "/template"
 @using SmartDj.Shared.Models
-<h3>Template</h3>
+<h3>Szablony</h3>
 
 <Grid @ref="grid"
       TItem="FormTemplate"
@@ -17,14 +17,26 @@
         Nazwa 
     </GridColumn>
     <GridColumn TItem="FormTemplate" HeaderText="Aktywny">
-        @context.IsActive
+        @if (context.IsActive)
+        {
+        <Button
+            Color="ButtonColor.Primary"
+            Outline="true">
+            <Icon Name="IconName.HandThumbsUp"/>
+        </Button>
+        }
+        else
+        {
+            <Button
+                Color="ButtonColor.Dark"
+                @onclick="(() => SetAsActive(context.Id))"
+                Outline="true">
+                <Icon Name="IconName.HandThumbsDown"/>
+            </Button>
+        }
     </GridColumn>
-    
-
+    <GridColumn TItem="FormTemplate" HeaderText="Edytuj">
+        <Button Color="ButtonColor.Primary" @onclick="SaveTemplateChanges">Edytuj</Button>
+    </GridColumn>
 </Grid>
-
-<Button Color="ButtonColor.Secondary" @onclick="LoadActiveTemplate">Załaduj aktywny szablon</Button>
-<Button Color="ButtonColor.Primary" @onclick="SaveTemplateChanges">Zapisz zmiany</Button>
-<textarea>
-
-</textarea>
+<Button Color="ButtonColor.Primary" @onclick="SaveTemplateChanges">Dodaj Szablon</Button>

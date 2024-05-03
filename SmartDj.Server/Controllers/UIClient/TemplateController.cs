@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SmartDj.Server.Services;
+using SmartDj.Shared.DTO;
 using SmartDj.Shared.Models;
 
 namespace SmartDj.Server.Controllers.UIClient
@@ -38,12 +39,18 @@ namespace SmartDj.Server.Controllers.UIClient
         {
             return _formTemplateService.GetTemplateByID(id);
         }
+        // GET: get template by id
+        [HttpGet("setActive/{id}")]
+        public ServiceResponse<bool> SetAsAvctive(int id)
+        {
+            return _formTemplateService.SetAsActive(id);
+        }
 
         // POST: post template
         [HttpPost]
-        public ServiceResponse<string> Post([FromBody] string templateContent)
+        public ServiceResponse<string> Post([FromBody] PostTemplateDto postTemplateDto)
         {
-            return _formTemplateService.AddTemplate(templateContent);
+            return _formTemplateService.AddUpdateTemplate(postTemplateDto);
 
         }
 
