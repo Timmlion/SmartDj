@@ -17,7 +17,7 @@ namespace SmartDj.Server.Services
 
         public ServiceResponse<FormTemplate> GetActiveTemplate()
         {
-            var formTemplate = _dataContext.FormTemplates.FirstOrDefault();
+            var formTemplate = _dataContext.FormTemplates.Where(t => t.IsActive == true).FirstOrDefault();
             if (formTemplate != null)
             {
                 return new ServiceResponse<FormTemplate>(formTemplate);
@@ -51,16 +51,16 @@ namespace SmartDj.Server.Services
             return new ServiceResponse<FormTemplate>("Template not found.");
         }
 
-        public ServiceResponse<string> AddUpdateTemplate(PostTemplateDto postTemplateDto)
+        public ServiceResponse<bool> AddUpdateTemplate(PostTemplateDto postTemplateDto)
         {
-            if (postTemplateDto.Id == null)
+            if (postTemplateDto.Id == 0)
             {
                 var newTemplate = new FormTemplate { 
                     HtmlContent = postTemplateDto.TemplateContent, 
                     Name = postTemplateDto.Name};
                 _dataContext.FormTemplates.Add(newTemplate);
                 _dataContext.SaveChanges();
-                return new ServiceResponse<string>(data: "Template added successfully.");
+                return new ServiceResponse<bool>(true);
             }
             else
             {
@@ -68,21 +68,21 @@ namespace SmartDj.Server.Services
                 template.Name = postTemplateDto.Name;
                 template.HtmlContent = postTemplateDto.TemplateContent;
                 _dataContext.SaveChanges();
-                return new ServiceResponse<string>(data: "Template updated successfully.");
+                return new ServiceResponse<bool>(true);
             }
         }
 
-        public ServiceResponse<string> RemoveTemplate(int id)
+        public ServiceResponse<bool> RemoveTemplate(int id)
         {
             var template = _dataContext.FormTemplates.Find(id);
             if (template != null)
             {
                 _dataContext.FormTemplates.Remove(template);
                 _dataContext.SaveChanges();
-                return new ServiceResponse<string>(data: "Template removed successfully.");
+                return new ServiceResponse<bool>(true);
             }
 
-            return new ServiceResponse<string>("Template not found.");
+            return new ServiceResponse<bool>(false);
         }
 
         public ServiceResponse<bool> SetAsActive(int id)

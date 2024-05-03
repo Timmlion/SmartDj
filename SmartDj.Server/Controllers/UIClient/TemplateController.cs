@@ -48,7 +48,7 @@ namespace SmartDj.Server.Controllers.UIClient
 
         // POST: post template
         [HttpPost]
-        public ServiceResponse<string> Post([FromBody] PostTemplateDto postTemplateDto)
+        public ServiceResponse<bool> Post([FromBody] PostTemplateDto postTemplateDto)
         {
             return _formTemplateService.AddUpdateTemplate(postTemplateDto);
 
@@ -56,7 +56,7 @@ namespace SmartDj.Server.Controllers.UIClient
 
         // DELETE: dalete template by id
         [HttpDelete("{id}")]
-        public ServiceResponse<string> Delete(int id)
+        public ServiceResponse<bool> Delete(int id)
         {
             return _formTemplateService.RemoveTemplate(id);
         }

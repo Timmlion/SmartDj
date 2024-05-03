@@ -8,13 +8,13 @@ namespace SmartDj.Server.Controllers.Public
 {
     [Route("public")]
     [ApiController]
-    public class SongRequestController : ControllerBase
+    public class PublicController : ControllerBase
     {
 
         private SongRequestService _songRequestService;
         private FormTemplateService _formTemplateService;
 
-        public SongRequestController(
+        public PublicController(
             SongRequestService songRequestService,
             FormTemplateService formTemplateService
         )
@@ -23,13 +23,13 @@ namespace SmartDj.Server.Controllers.Public
             _formTemplateService = formTemplateService;
         }
 
-        [HttpPost("[controller]")]
+        [HttpPost("request")]
         public ServiceResponse<int> Post([FromBody] PostSongRequestDTO songRequestDto)
         {
             return _songRequestService.AddSongToList(songRequestDto);
         }
 
-        [HttpGet("Webform")]
+        [HttpGet("template")]
         public IActionResult Get()
         {
             var formContent = _formTemplateService.GetActiveTemplate();

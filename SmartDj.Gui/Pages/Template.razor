@@ -14,7 +14,7 @@
         @context.DateCreated
     </GridColumn>
     <GridColumn TItem="FormTemplate" HeaderText="Nazwa">
-        Nazwa 
+        @context.Name 
     </GridColumn>
     <GridColumn TItem="FormTemplate" HeaderText="Aktywny">
         @if (context.IsActive)
@@ -36,7 +36,36 @@
         }
     </GridColumn>
     <GridColumn TItem="FormTemplate" HeaderText="Edytuj">
-        <Button Color="ButtonColor.Primary" @onclick="SaveTemplateChanges">Edytuj</Button>
+        <Button Color="ButtonColor.Primary" @onclick="() => ShowModalTemplate(context.Id)">Edytuj</Button>
+    </GridColumn>
+    <GridColumn TItem="FormTemplate" HeaderText="Usuń">
+        <Button Color="ButtonColor.Danger" @onclick="() => RemoveModal(context.Id)"><Icon Name="IconName.DashCircleFill"/> Usuń</Button>
     </GridColumn>
 </Grid>
-<Button Color="ButtonColor.Primary" @onclick="SaveTemplateChanges">Dodaj Szablon</Button>
+<Button Color="ButtonColor.Primary" @onclick="() => ShowModalTemplate(null)">Dodaj Szablon</Button>
+
+<Modal @ref="xlModal" title="Szablon" Size="ModalSize.ExtraLarge">
+    <BodyTemplate>
+        <div class="container mt-5">
+            <form>
+                <div class="form-group">
+                    <label for="idInput">Id</label>
+                    <input type="number" class="form-control" id="idInput" placeholder="ID" disabled @bind="TemplateId">
+                </div>
+                <!-- Name Input -->
+                <div class="form-group">
+                    <label for="nameInput">Nazwa</label>
+                    <input type="text" class="form-control" id="nameInput" placeholder="Nazwa" @bind="TemplateName">
+                </div>
+
+                <!-- Template Text Area -->
+                <div class="form-group">
+                    <label for="templateInput">Szablon</label>
+                    <textarea class="form-control" id="templateInput" rows="10" placeholder="Szablon" @bind="TemplateContent"></textarea>
+                </div>
+            </form>
+        </div>
+        <Button Color="ButtonColor.Primary" @onclick="() => SaveTemplate()">Zapisz</Button>
+    </BodyTemplate>
+</Modal>
+

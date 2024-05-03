@@ -20,7 +20,7 @@ public class TemplateService(HttpClient httpClient)
         return null;
     }
 
-    public async Task<bool> PostTemplate(FormTemplate formTemplate)
+    public async Task<bool> PostTemplate(PostTemplateDto formTemplate)
     {
         var response = await httpClient.PostAsJsonAsync(
             "api/Template", formTemplate);
@@ -47,6 +47,15 @@ public class TemplateService(HttpClient httpClient)
     {
         var response = await httpClient.GetAsync(
             "api/Template/setActive/"+contextId);
+        var serviceResponse = await response.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
+
+        return serviceResponse.Success;
+    }
+
+    public async Task<bool> RemoveTemplate(int contextId)
+    {
+        var response = await httpClient.DeleteAsync(
+            "api/Template/"+contextId);
         var serviceResponse = await response.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
 
         return serviceResponse.Success;
