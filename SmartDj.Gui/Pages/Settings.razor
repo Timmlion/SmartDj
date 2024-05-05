@@ -10,23 +10,39 @@
         <Button Color="ButtonColor.Primary" @onclick="ClearSongList">Usuń wszystko</Button>
     </FooterTemplate>
 </Modal>
-
-<Button
-    Color="ButtonColor.Danger"
-    @onclick="(() => ShowClearListModal())"
-    Outline="true">
-    <Icon Name="IconName.XCircleFill"></Icon> Wyczyść listę
-</Button>
-
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="example: http://localhost:8080/" @bind="@baseAddress" >
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @onclick="SaveBaseAddress">Save</button>
+<div class="row">
+    <div class="col-sm-6">
+        <Card>
+            <CardBody>
+                <CardTitle>Lista zamówionych utworów</CardTitle>
+                <Button
+                    Color="ButtonColor.Danger"
+                    @onclick="(() => ShowClearListModal())"
+                    Outline="true">
+                    <Icon Name="IconName.XCircleFill"></Icon> Wyczyść listę
+                </Button>
+            </CardBody>
+        </Card>
+    </div>
+    <div class="col-sm-6">
+        <Card>
+            <CardBody>
+                <CardTitle>Adres servera</CardTitle>
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="example: http://localhost:8080/" @bind="@baseAddress" >
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" @onclick="SaveBaseAddress">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </CardBody>
+        </Card>
     </div>
 </div>
+
+
