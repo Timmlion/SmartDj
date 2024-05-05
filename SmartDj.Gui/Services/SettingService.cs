@@ -17,4 +17,23 @@ public class SettingService(ILocalStorageService localStorage)
         }
         return _baseAddress;
     }
+
+    public async Task<bool> AddBaseAddress(string value)
+    {
+        return await AddToLocalStorage("baseAddress", value);
+    }
+    
+    public async Task<bool> AddToLocalStorage(string key, string value)
+    {
+        try
+        {
+            await localStorage.SetItemAsync(key, value);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+        
+    }
 }

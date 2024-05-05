@@ -8,8 +8,19 @@ public partial class Settings : ComponentBase
 {
     [Inject]
     private SongRequestService _songRequestService { get; set; }
+    [Inject]
+    private SettingService _settingService { get; set; }
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
     
     private Modal modal = default!;
+
+    private string baseAddress;
+
+    protected override async Task OnInitializedAsync()
+    {
+        baseAddress = await _settingService.GetBaseAddress();
+    }
 
     private async Task ShowClearListModal()
     {
@@ -35,5 +46,11 @@ public partial class Settings : ComponentBase
         }
         
         HideClearListModal();
+    }
+
+    private async Task SaveBaseAddress()
+    {
+        await _settingService.AddBaseAddress(baseAddress);
+        NavigationManager.NavigateTo("settings", true);
     }
 }

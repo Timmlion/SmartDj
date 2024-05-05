@@ -15,5 +15,18 @@
     Color="ButtonColor.Danger"
     @onclick="(() => ShowClearListModal())"
     Outline="true">
-        <Icon Name="IconName.XCircleFill"></Icon> Wyczyść listę
+    <Icon Name="IconName.XCircleFill"></Icon> Wyczyść listę
 </Button>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="example: http://localhost:8080/" @bind="@baseAddress" >
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" @onclick="SaveBaseAddress">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
