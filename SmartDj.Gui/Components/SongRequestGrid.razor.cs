@@ -26,8 +26,9 @@ public partial class SongRequestGrid : ComponentBase
 
         while (await timer.WaitForNextTickAsync())
         {
-            grid.RefreshDataAsync();   
+            grid.RefreshDataAsync();
         }
+
     }
 
     private async Task<GridDataProviderResult<SongRequest>> SongRequestDataProvider(

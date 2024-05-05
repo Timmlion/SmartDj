@@ -3,4 +3,13 @@
 
 <PageTitle>Home</PageTitle>
 
-<SmartDj.Gui.Components.SongRequestGrid/>
+@if (_isConnectedToServer)
+{
+    <SmartDj.Gui.Components.SongRequestGrid/>
+}
+else
+{
+    <b>No Server connection</b>
+}
+
+

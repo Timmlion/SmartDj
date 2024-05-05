@@ -17,6 +17,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://
 builder.Services.AddScoped<SongRequestService>();
 builder.Services.AddScoped<SettingService>();
 builder.Services.AddScoped<TemplateService>();
+builder.Services.AddScoped<ServerCheckService>();
+
 
 builder.Services.AddBlazoredLocalStorage();
 
