@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
         policy  =>
         {
             policy
-                .AllowAnyOrigin()
+                .WithOrigins("https://smartdj.z6.web.core.windows.net")
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         });
@@ -38,6 +38,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using(var scope = app.Services.CreateAsyncScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+    dbContext.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();

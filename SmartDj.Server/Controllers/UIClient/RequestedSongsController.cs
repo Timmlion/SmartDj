@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmartDj.Server.Services;
@@ -8,6 +9,7 @@ namespace SmartDj.Server.Controllers.UIClient
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("_myAllowSpecificOrigins")] 
     public class RequestedSongsController : ControllerBase
     {
         private SongRequestService _songRequestService;
@@ -19,22 +21,22 @@ namespace SmartDj.Server.Controllers.UIClient
         
         // Get requested songs
         [HttpGet]
-        public ServiceResponse<List<SongRequest>> Get()
+        public IActionResult Get()
         {
-            return _songRequestService.GetRequestedSongsList();
+            return Ok(_songRequestService.GetRequestedSongsList());
         }
         
         // Clear song request list
         [HttpDelete]
-        public ServiceResponse<bool> Delete()
+        public IActionResult Delete()
         {
-            return _songRequestService.ClearSongList();
+            return Ok(_songRequestService.ClearSongList());
         }
 
         [HttpPost]
-        public ServiceResponse<bool> UpdateSongRequest([FromBody]PostSongRequestUpdateDto songRequestUpdate)
+        public IActionResult UpdateSongRequest([FromBody]PostSongRequestUpdateDto songRequestUpdate)
         {
-            return _songRequestService.UpdateSongRequest(songRequestUpdate);
+            return Ok(_songRequestService.UpdateSongRequest(songRequestUpdate));
         }
     }
 }

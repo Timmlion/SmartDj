@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices.JavaScript;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SmartDj.Server.Services;
 using SmartDj.Shared.DTO;
@@ -8,6 +9,7 @@ namespace SmartDj.Server.Controllers.Public
 {
     [Route("public")]
     [ApiController]
+    [EnableCors("_myAllowSpecificOrigins")] 
     public class PublicController : ControllerBase
     {
 
