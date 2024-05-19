@@ -5,8 +5,8 @@
 <br />
 
 <div align="center">
-  <img alt="GitHub License" src="https://img.shields.io/github/license/yourusername/smartdj">
-  <img alt="GitHub Release" src="https://img.shields.io/github/v/release/yourusername/smartdj">
+  <img alt="GitHub License" src="https://img.shields.io/github/license/timmlion/smartdj">
+  <img alt="GitHub Release" src="https://img.shields.io/github/v/release/timmlion/smartdj">
 </div>
 
 <br />
